@@ -26,6 +26,30 @@
         html {
             scroll-behavior: smooth;
         }
+        
+        /* 图片加载占位样式 */
+        .img-placeholder {
+            background-color: #f3f4f6;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .img-placeholder::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shimmer 1.5s infinite;
+        }
+        
+        @keyframes shimmer {
+            100% {
+                left: 100%;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50 font-sans">
@@ -77,12 +101,17 @@
                     <div class="grid md:grid-cols-2 gap-6 items-center">
                         <div class="flex justify-center">
                             <div class="bg-gray-100 p-4 rounded-lg inline-block">
-                                <img src="imgs/image001.jpg" alt="激活流程二维码" class="max-w-[200px] mx-auto rounded shadow">
+                                <!-- 使用data-src代替src，以便控制加载顺序 -->
+                                <div class="img-placeholder mx-auto" style="width: 200px; height: 200px;">
+                                    <img data-src="imgs/image001.jpg" alt="激活流程二维码" class="max-w-[200px] mx-auto rounded shadow sequential-load" data-order="1">
+                                </div>
                                 <p class="text-center mt-3 text-sm text-gray-600">请扫描此二维码</p>
                             </div>
                         </div>
                         <div>
-                            <img src="imgs/image002.jpg" alt="关注公众号界面" class="w-full h-auto rounded-lg shadow">
+                            <div class="img-placeholder" style="padding-top: 75%;">
+                                <img data-src="imgs/image002.jpg" alt="关注公众号界面" class="w-full h-auto rounded-lg shadow sequential-load" data-order="2">
+                            </div>
                             <p class="mt-4 text-gray-700">
                                 <i class="fa fa-info-circle text-blue-500 mr-2"></i>
                                 扫描二维码后，点击关注公众号，以便接收后续激活指引。
@@ -102,7 +131,9 @@
                 </div>
                 <div class="p-6">
                     <div class="mb-4">
-                        <img src="imgs/image003.jpg" alt="公众号内的激活链接位置" class="w-full h-auto rounded-lg shadow">
+                        <div class="img-placeholder" style="padding-top: 56.25%;">
+                            <img data-src="imgs/image003.jpg" alt="公众号内的激活链接位置" class="w-full h-auto rounded-lg shadow sequential-load" data-order="3">
+                        </div>
                     </div>
                     <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
                         <p class="text-gray-700">
@@ -123,12 +154,16 @@
                 </div>
                 <div class="p-6">
                     <div class="mb-6">
-                        <img src="imgs/image004.jpg" alt="信息填写表单界面" class="w-full h-auto rounded-lg shadow">
+                        <div class="img-placeholder" style="padding-top: 56.25%;">
+                            <img data-src="imgs/image004.jpg" alt="信息填写表单界面" class="w-full h-auto rounded-lg shadow sequential-load" data-order="4">
+                        </div>
                     </div>
                     
                     <div class="mb-6">
                         <h3 class="font-bold text-lg mb-3 text-gray-800">设备号输入步骤：</h3>
-                        <img src="imgs/image005.jpg" alt="设备号查找步骤图示" class="w-full h-auto rounded-lg shadow mb-4">
+                        <div class="img-placeholder" style="padding-top: 56.25%;">
+                            <img data-src="imgs/image005.jpg" alt="设备号查找步骤图示" class="w-full h-auto rounded-lg shadow mb-4 sequential-load" data-order="5">
+                        </div>
                         <p class="text-gray-700">
                             开机后划动屏幕至设置界面，点击设置后找到绑定码点击，扫描绑定码即可获取设备号。
                         </p>
@@ -153,7 +188,9 @@
                 </div>
                 <div class="p-6">
                     <div class="mb-6">
-                        <img src="imgs/image006.gif" alt="激活按钮位置" class="w-full h-auto rounded-lg shadow">
+                        <div class="img-placeholder" style="padding-top: 56.25%;">
+                            <img data-src="imgs/image006.gif" alt="激活按钮位置" class="w-full h-auto rounded-lg shadow sequential-load" data-order="6">
+                        </div>
                     </div>
                     
                     <div class="bg-green-50 p-5 rounded-lg text-center">
@@ -182,6 +219,48 @@
     </button>
 
     <script>
+        // 图片顺序加载功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取所有需要按顺序加载的图片，并按data-order排序
+            const images = Array.from(document.querySelectorAll('.sequential-load'))
+                .sort((a, b) => parseInt(a.dataset.order) - parseInt(b.dataset.order));
+            
+            // 递归加载图片
+            function loadImage(index) {
+                if (index >= images.length) return;
+                
+                const img = images[index];
+                const src = img.dataset.src;
+                
+                // 创建新的图像对象来预加载
+                const tempImg = new Image();
+                tempImg.src = src;
+                
+                tempImg.onload = function() {
+                    // 图片加载完成后，设置src属性显示图片
+                    img.src = src;
+                    // 隐藏占位符
+                    const placeholder = img.parentElement;
+                    placeholder.classList.add('opacity-0');
+                    setTimeout(() => {
+                        placeholder.style.display = 'none';
+                    }, 300);
+                    
+                    // 加载下一张图片
+                    loadImage(index + 1);
+                };
+                
+                // 图片加载失败时也继续加载下一张
+                tempImg.onerror = function() {
+                    console.error(`无法加载图片: ${src}`);
+                    loadImage(index + 1);
+                };
+            }
+            
+            // 开始加载第一张图片
+            loadImage(0);
+        });
+
         // 返回顶部按钮功能
         const backToTopBtn = document.getElementById('backToTop');
         
