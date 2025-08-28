@@ -50,16 +50,6 @@
                 left: 100%;
             }
         }
-        
-        /* 图片淡入效果 */
-        .fade-in {
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-        }
-        
-        .fade-in.loaded {
-            opacity: 1;
-        }
     </style>
 </head>
 <body class="bg-gray-50 font-sans">
@@ -111,25 +101,16 @@
                     <div class="grid md:grid-cols-2 gap-6 items-center">
                         <div class="flex justify-center">
                             <div class="bg-gray-100 p-4 rounded-lg inline-block">
+                                <!-- 使用data-src代替src，以便控制加载顺序 -->
                                 <div class="img-placeholder mx-auto" style="width: 200px; height: 200px;">
-                                    <!-- 使用WebP格式（如有）和适当尺寸 -->
-                                    <img data-src="imgs/image001.jpg" 
-                                         data-srcset="imgs/image001-small.jpg 400w, imgs/image001.jpg 800w"
-                                         alt="激活流程二维码" 
-                                         class="max-w-[200px] mx-auto rounded shadow sequential-load fade-in" 
-                                         data-order="1"
-                                         width="200" height="200">
+                                    <img data-src="imgs/image001.jpg" alt="激活流程二维码" class="max-w-[200px] mx-auto rounded shadow sequential-load" data-order="1">
                                 </div>
                                 <p class="text-center mt-3 text-sm text-gray-600">请扫描此二维码</p>
                             </div>
                         </div>
                         <div>
                             <div class="img-placeholder" style="padding-top: 75%;">
-                                <img data-src="imgs/image002.jpg" 
-                                     data-srcset="imgs/image002-small.jpg 400w, imgs/image002.jpg 800w"
-                                     alt="关注公众号界面" 
-                                     class="w-full h-auto rounded-lg shadow sequential-load fade-in" 
-                                     data-order="2">
+                                <img data-src="imgs/image002.jpg" alt="关注公众号界面" class="w-full h-auto rounded-lg shadow sequential-load" data-order="2">
                             </div>
                             <p class="mt-4 text-gray-700">
                                 <i class="fa fa-info-circle text-blue-500 mr-2"></i>
@@ -151,11 +132,7 @@
                 <div class="p-6">
                     <div class="mb-4">
                         <div class="img-placeholder" style="padding-top: 56.25%;">
-                            <img data-src="imgs/image003.jpg" 
-                                 data-srcset="imgs/image003-small.jpg 400w, imgs/image003.jpg 800w"
-                                 alt="公众号内的激活链接位置" 
-                                 class="w-full h-auto rounded-lg shadow sequential-load fade-in" 
-                                 data-order="3">
+                            <img data-src="imgs/image003.jpg" alt="公众号内的激活链接位置" class="w-full h-auto rounded-lg shadow sequential-load" data-order="3">
                         </div>
                     </div>
                     <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
@@ -178,22 +155,14 @@
                 <div class="p-6">
                     <div class="mb-6">
                         <div class="img-placeholder" style="padding-top: 56.25%;">
-                            <img data-src="imgs/image004.jpg" 
-                                 data-srcset="imgs/image004-small.jpg 400w, imgs/image004.jpg 800w"
-                                 alt="信息填写表单界面" 
-                                 class="w-full h-auto rounded-lg shadow sequential-load fade-in" 
-                                 data-order="4">
+                            <img data-src="imgs/image004.jpg" alt="信息填写表单界面" class="w-full h-auto rounded-lg shadow sequential-load" data-order="4">
                         </div>
                     </div>
                     
                     <div class="mb-6">
                         <h3 class="font-bold text-lg mb-3 text-gray-800">设备号输入步骤：</h3>
                         <div class="img-placeholder" style="padding-top: 56.25%;">
-                            <img data-src="imgs/image005.jpg" 
-                                 data-srcset="imgs/image005-small.jpg 400w, imgs/image005.jpg 800w"
-                                 alt="设备号查找步骤图示" 
-                                 class="w-full h-auto rounded-lg shadow mb-4 sequential-load fade-in" 
-                                 data-order="5">
+                            <img data-src="imgs/image005.jpg" alt="设备号查找步骤图示" class="w-full h-auto rounded-lg shadow mb-4 sequential-load" data-order="5">
                         </div>
                         <p class="text-gray-700">
                             开机后划动屏幕至设置界面，点击设置后找到绑定码点击，扫描绑定码即可获取设备号。
@@ -220,11 +189,7 @@
                 <div class="p-6">
                     <div class="mb-6">
                         <div class="img-placeholder" style="padding-top: 56.25%;">
-                            <img data-src="imgs/image006.gif" 
-                                 data-srcset="imgs/image006-small.gif 400w, imgs/image006.gif 800w"
-                                 alt="激活按钮位置" 
-                                 class="w-full h-auto rounded-lg shadow sequential-load fade-in" 
-                                 data-order="6">
+                            <img data-src="imgs/image006.gif" alt="激活按钮位置" class="w-full h-auto rounded-lg shadow sequential-load" data-order="6">
                         </div>
                     </div>
                     
@@ -253,114 +218,47 @@
         <i class="fa fa-arrow-up"></i>
     </button>
 
-    <!-- 预加载关键图片 -->
-    <link rel="preload" href="imgs/image001.jpg" as="image" fetchpriority="high">
-    <link rel="preload" href="imgs/image002.jpg" as="image">
-
     <script>
-        // 图片加载优化逻辑
+        // 图片顺序加载功能
         document.addEventListener('DOMContentLoaded', function() {
             // 获取所有需要按顺序加载的图片，并按data-order排序
             const images = Array.from(document.querySelectorAll('.sequential-load'))
                 .sort((a, b) => parseInt(a.dataset.order) - parseInt(b.dataset.order));
             
-            // 配置加载选项
-            const loadOptions = {
-                // 根据网络状况调整并发数
-                maxConcurrent: navigator.connection?.effectiveType === '4g' ? 2 : 1,
-                // 延迟加载非首屏图片
-                lazyLoadThreshold: 500
-            };
-            
-            // 当前正在加载的数量
-            let loadingCount = 0;
-            // 下一个要加载的图片索引
-            let nextToLoad = 0;
-            
-            // 检查并加载图片
-            function loadNextImages() {
-                // 还有图片要加载且未达到最大并发数
-                while (nextToLoad < images.length && loadingCount < loadOptions.maxConcurrent) {
-                    const img = images[nextToLoad];
-                    
-                    // 检查图片是否在视口附近
-                    if (isNearViewport(img, loadOptions.lazyLoadThreshold) || 
-                        // 优先加载前两张图片
-                        parseInt(img.dataset.order) <= 2) {
-                        
-                        loadImage(img);
-                        nextToLoad++;
-                    } else {
-                        // 图片不在视口附近，等待滚动事件触发
-                        break;
-                    }
-                }
-            }
-            
-            // 加载单个图片
-            function loadImage(img) {
-                loadingCount++;
+            // 递归加载图片
+            function loadImage(index) {
+                if (index >= images.length) return;
                 
+                const img = images[index];
                 const src = img.dataset.src;
+                
+                // 创建新的图像对象来预加载
                 const tempImg = new Image();
-                
-                // 设置适当的crossOrigin属性（如果需要）
-                if (src.includes('://') && !src.includes(window.location.host)) {
-                    tempImg.crossOrigin = 'anonymous';
-                }
-                
-                // 使用srcset响应式加载
-                if (img.dataset.srcset) {
-                    tempImg.srcset = img.dataset.srcset;
-                }
                 tempImg.src = src;
                 
-                // 图片加载完成
                 tempImg.onload = function() {
+                    // 图片加载完成后，设置src属性显示图片
                     img.src = src;
-                    if (img.dataset.srcset) {
-                        img.srcset = img.dataset.srcset;
-                    }
-                    // 显示图片
-                    img.classList.add('loaded');
                     // 隐藏占位符
                     const placeholder = img.parentElement;
-                    placeholder.style.display = 'none';
+                    placeholder.classList.add('opacity-0');
+                    setTimeout(() => {
+                        placeholder.style.display = 'none';
+                    }, 300);
                     
-                    loadingCount--;
-                    // 继续加载下一张
-                    loadNextImages();
+                    // 加载下一张图片
+                    loadImage(index + 1);
                 };
                 
-                // 图片加载失败处理
+                // 图片加载失败时也继续加载下一张
                 tempImg.onerror = function() {
                     console.error(`无法加载图片: ${src}`);
-                    // 尝试加载原始图片
-                    if (img.dataset.src !== src) {
-                        img.src = img.dataset.src;
-                    }
-                    
-                    loadingCount--;
-                    loadNextImages();
+                    loadImage(index + 1);
                 };
             }
             
-            // 检查元素是否在视口附近
-            function isNearViewport(element, threshold = 0) {
-                const rect = element.getBoundingClientRect();
-                return (
-                    rect.top <= window.innerHeight + threshold &&
-                    rect.bottom >= -threshold
-                );
-            }
-            
-            // 初始加载
-            loadNextImages();
-            
-            // 滚动时加载更多图片
-            window.addEventListener('scroll', loadNextImages);
-            // 窗口大小改变时重新检查
-            window.addEventListener('resize', loadNextImages);
+            // 开始加载第一张图片
+            loadImage(0);
         });
 
         // 返回顶部按钮功能
