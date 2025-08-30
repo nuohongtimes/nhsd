@@ -1,108 +1,103 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>诺宏智能学生证简介</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>诺宏智能学生证简介</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
 
-        /* 16:9视频比例容器核心样式：通过padding-top实现比例占位 */
-        .video-container {
-            position: relative;
-            width: 100%;
-            padding-top: 56.25%; /* 16:9 Aspect Ratio */
-            overflow: hidden;
-            /* 可选：限制视频最大宽度，避免在超宽屏幕上过大 */
-            max-width: 800px; /* 例如，最大宽度为800px */
-            margin: 0 auto; /* 容器居中 */
-        }
+        /* 16:9视频比例容器核心样式：通过padding-top实现比例占位 */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            overflow: hidden;
+            /* 可选：限制视频最大宽度，避免在超宽屏幕上过大 */
+            max-width: 800px; /* 例如，最大宽度为800px */
+            margin: 0 auto; /* 容器居中 */
+        }
 
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
 
-        /* 隐藏滚动条优化 */
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .hide-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-    </style>
+        /* 隐藏滚动条优化 */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
 </head>
 <body class="bg-gray-50 font-sans">
-    <header class="bg-blue-600 text-white shadow-md">
-        <div class="container mx-auto px-4 py-5 text-center">
-            <h1 class="text-[clamp(1.5rem,5vw,2.5rem)] font-bold">诺宏智能学生证简介</h1>
-        </div>
-    </header>
+    <header class="bg-blue-600 text-white shadow-md">
+        <div class="container mx-auto px-4 py-5 text-center">
+            <h1 class="text-[clamp(1.5rem,5vw,2.5rem)] font-bold">诺宏智能学生证简介</h1>
+        </div>
+    </header>
 
-    <main class="container mx-auto px-4 py-8">
-        <div class="max-w-3xl mx-auto space-y-10">
-            <section class="step-card bg-white rounded-xl shadow-md overflow-hidden transform transition hover:shadow-lg">
-                <div class="bg-blue-600 text-white px-6 py-4">
-                    <div class="flex items-center">
-                        <span class="w-10 h-10 rounded-full bg-white text-blue-600 flex items-center justify-center mr-3 text-xl font-bold">▶</span>
-                        <h2 class="text-xl font-bold">智能学生证功能视频展示</h2>
-                    </div>
-                </div>
-                <div class="p-6">
-                    <div class="video-container">
-                        <iframe src='https://player.youku.com/embed/XNjQ5ODc0MjE3Ng==' allowfullscreen></iframe>
-                    </div>
-                </div>
-            </section>
+    <main class="container mx-auto px-4 py-8">
+        <div class="max-w-3xl mx-auto space-y-10">
+            <section class="step-card bg-white rounded-xl shadow-md overflow-hidden transform transition hover:shadow-lg">
+                  <div class="p-6">
+                    <div class="video-container">
+                        <iframe src='https://player.youku.com/embed/XNjQ5ODc0MjE3Ng==' allowfullscreen></iframe>
+                    </div>
+                </div>
+            </section>
 
-            <div class="mt-6 text-center">
-                <a href="https://www.wjx.cn/vm/OBXcsmi.aspx#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition hover:scale-105">
-                    点此预约登记
-                </a>
-            </div>
-        </div>
-    </main>
+            <div class="mt-6 text-center">
+                <a href="https://www.wjx.cn/vm/OBXcsmi.aspx#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition hover:scale-105">
+                    点此预约登记
+                </a>
+                <p class="mt-4 text-gray-600 text-base text-red">集中办理时间：9.1开学后的第一个返校日</p>
+            </div>
+        </div>
+    </main>
 
-    <footer class="bg-gray-800 text-white py-8 mt-12">
-        <div class="container mx-auto px-4 text-center">
-            <p class="mb-2">如有疑问，请联系客服：<a href="tel:051783905111">0517 83905111</a> / <a href="tel:051783905333">83905333</a></p>
-            <p class="text-sm opacity-70">© 2025 诺宏时代智能学生证 版权所有</p>
-        </div>
-    </footer>
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="mb-2">如有疑问，请联系客服：<a href="tel:051783905111">0517 83905111</a> / <a href="tel:051783905333">83905333</a></p>
+            <p class="text-sm opacity-70">© 2025 江苏诺宏时代智能科技有限公司 版权所有</p>
+        </div>
+    </footer>
 
-    <button id="backToTop" class="fixed bottom-6 right-6 bg-blue-600 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300">
-        <i class="fa fa-arrow-up"></i>
-    </button>
+    <button id="backToTop" class="fixed bottom-6 right-6 bg-blue-600 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300">
+        <i class="fa fa-arrow-up"></i>
+    </button>
 
-    <script>
-        // 返回顶部按钮功能
-        const backToTopBtn = document.getElementById('backToTop');
+    <script>
+        // 返回顶部按钮功能
+        const backToTopBtn = document.getElementById('backToTop');
 
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTopBtn.classList.remove('opacity-0', 'invisible');
-                backToTopBtn.classList.add('opacity-100', 'visible');
-            } else {
-                backToTopBtn.classList.remove('opacity-100', 'visible');
-                backToTopBtn.classList.add('opacity-0', 'invisible');
-            }
-        });
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.remove('opacity-0', 'invisible');
+                backToTopBtn.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopBtn.classList.remove('opacity-100', 'visible');
+                backToTopBtn.classList.add('opacity-0', 'invisible');
+            }
+        });
 
-        backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    </script>
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
 </body>
 </html>
