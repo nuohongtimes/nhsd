@@ -31,33 +31,24 @@
             border: 0;
         }
 
-        /* 隐藏滚动条优化 */
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
+        /* 新增的动画效果，用于突出显示预约链接和提示 */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+            }
         }
-        .hide-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
+        .animate-pulse-effect {
+            animation: pulse 2s infinite;
         }
-
-        /* 新增的动画效果，用于突出显示预约链接和提示 */
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
-            }
-            70% {
-                transform: scale(1.05);
-                box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
-            }
-            100% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
-            }
-        }
-        .animate-pulse-effect {
-            animation: pulse 2s infinite;
-        }
     </style>
 </head>
 <body class="bg-gray-50 font-sans">
@@ -87,7 +78,7 @@
                 <a href="https://www.wjx.cn/vm/OBXcsmi.aspx#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full shadow-lg transform transition hover:scale-105 animate-pulse-effect text-lg">
                     点此预约办理
                 </a>
-                <p class="mt-4 text-red-600 font-semibold text-base">集中办理时间：9.1开学后的第一个返校日</p>
+                <p class="mt-4 text-red-600 font-semibold text-base">集中办理时间：9.1开学后的下一个返校日</p>
             </div>
         </div>
     </main>
