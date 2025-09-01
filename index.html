@@ -61,20 +61,25 @@
     <main class="container mx-auto px-4 py-8">
         <div class="max-w-3xl mx-auto space-y-10">
             <section class="step-card bg-white rounded-xl shadow-md overflow-hidden transform transition hover:shadow-lg">
-    <div class="p-6">
-        <!-- 16:9比例视频容器：实现自适应窗口大小 -->
-        <div class="video-container">
-            <iframe src='https://player.youku.com/embed/XNjQ5ODc0MjE3Ng==' allowfullscreen></iframe>
+      <div class="relative rounded-lg overflow-hidden shadow-lg bg-gray-100">
+        <!-- 视频比例控制容器 -->
+        <div class="aspect-w-16 aspect-h-9">
+            <iframe src='https://player.youku.com/embed/XNjQ5ODc0MjE3Ng==' 
+                    frameborder="0" 
+                    allowfullscreen
+                    class="w-full h-full object-contain"></iframe>
         </div>
+    </div>
+    
+    <!-- 预约按钮 - 居中显示，带悬停效果 -->
+    <div class="mt-6 text-center">
+        <a href="#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-md transform transition hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+            点此预约办理
+        </a>
     </div>
    </section>
 
-            <div class="mt-8 text-center">
-                <a href="https://www.wjx.cn/vm/OBXcsmi.aspx#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full shadow-lg transform transition hover:scale-105 animate-pulse-effect text-lg">
-                    点此预约办理
-                </a>
-                <p class="mt-4 text-red-600 font-semibold text-base">集中办理时间为：9.1开学后的下一个返校日</p>
-            </div>
+            
         </div>
     </main>
 
