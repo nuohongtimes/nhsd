@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>页面自动跳转</title>
+    <title>激活中</title>
     <!-- 第一种跳转方式：通过meta标签实现 -->
     <meta http-equiv="refresh" content="3;url=https://www.example.com">
     <style>
@@ -42,7 +42,11 @@
     </style>
 </head>
 <body>
-
+    <div class="container">
+        
+        
+        <p id="countdown">激活中...</p>
+    </div>
 
     <script>
         // 第二种跳转方式：通过JavaScript实现（带有倒计时效果）
@@ -51,7 +55,7 @@
         // 设置倒计时时间（秒）
         let seconds = 0;
         // 设置目标跳转链接
-        const targetUrl = "https://mp.nuohong917.com/?code=021qpR0w3dAxB53GfO2w3JxFtg1qpR01&state=wx_login#/pages/RegisterActivation/RegisterActivation?classId=1964881116741636096&appId=wx9523d2391b6a22fa";
+        const targetUrl = "https://www.example.com";
 
         // 倒计时函数
         function updateCountdown() {
